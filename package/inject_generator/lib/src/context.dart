@@ -8,6 +8,7 @@
 
 import 'dart:async';
 import 'package:analyzer/dart/analysis/results.dart';
+import 'package:analyzer/dart/analysis/session.dart';
 
 // <TRANSITIONAL_API>
 import 'package:analyzer/src/dart/analysis/results.dart';
@@ -103,7 +104,7 @@ class BuilderLogger {
     // <TRANSITIONAL_API>
     ElementDeclarationResult elementDeclaration;
     if (element.kind != ElementKind.DYNAMIC) {
-      var parsedLibrary = ParsedLibraryResultImpl.tmp(element.library);
+      var parsedLibrary = element.session.getParsedLibraryByElement(element.library);
       if (parsedLibrary.state == ResultState.VALID) {
         elementDeclaration = parsedLibrary.getElementDeclaration(element);
       }
